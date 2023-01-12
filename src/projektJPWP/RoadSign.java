@@ -26,7 +26,7 @@ public class RoadSign extends JPanel {
 
         sWidth=1024;
         sHeight=768;
-        currImage = 6;
+        currImage = 0;
 
         signImages =  signImagesGpars;
     }

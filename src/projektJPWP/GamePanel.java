@@ -214,6 +214,7 @@ public class GamePanel extends JPanel {
             examPassed = true;
             PassCorrectly = false;
             hasGameStarted = false;
+            sign.currImage = 0;
         }
     }
 
