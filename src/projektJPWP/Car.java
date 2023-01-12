@@ -6,26 +6,29 @@ import java.awt.*;
 
 
 public class Car extends JPanel{
-    public int x;           //wsporzedne auta
+
+    /** współrzędne auta */
+    public int x;
     public int y;
 
+    /** tymczasowe położenie auta */
     public int currX;
     public int currY;
+
+    /** parametry przesunięcia sie auta */
     public int dy;
     public int dx;
 
+    /** szerokość i wysokość auta */
     public int carWidth;
     public int carHeight;
 
+    /** szerokość i wysokość pola graficznego */
     public int sWidth;
     public int sHeight;
 
+    /** zmiena określająca obecny profil auta */
     public int currImage;
-
-    public boolean hasStopped=false;
-
-
-
 
     public Image carImages[];
 
@@ -43,12 +46,9 @@ public class Car extends JPanel{
 
         carImages=carImagesGpars;
 
-
-
-
     } // koniec konstruktora klasy Car
 
-
+    //poruszanie sie auta w lini prostej x i y
     public void carMovement(){
 
             currY = currY - dy;
@@ -56,6 +56,7 @@ public class Car extends JPanel{
 
     } //koniec carMovement
 
+    //ustawienie szerokości i wysokości zależące od profilu auta
     public void setCarHitbox(){
         if(this.currImage == 0){
             this.carHeight = 254;

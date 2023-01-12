@@ -16,15 +16,13 @@ public class Window extends JFrame{
                 setUndecorated(true); //ukryj ramkę okna i przyciski kontrolne
                 initGUI(width,height); //wywołaj metodę budowy interfejsu
                 setVisible(true); //pokaż okno
-                animation();
+                animation();  //uruchom animacje gry
                 }
 
         private void initGUI(int width, int height) {
                 setLayout(new GridLayout(1,1)); //ustaw rozkład
-                //ustaw zasoby i parametry początkowe
-                //Toolkit tk = Toolkit.getDefaultToolkit();
                 GPars.loadInitialImages();
-                add(new GamePanel());
+                add(new GamePanel()); //dodanie panelu gry z grafiką i dalszym działaniem gry
         }
 
         private void animation() {
@@ -33,18 +31,12 @@ public class Window extends JFrame{
                 long currTime = GPars.startTime;
 
                 while (true) {
-                        long elapsedTime = System.currentTimeMillis() - currTime;
-                        //licz czas gry - może się przydać w ograniczeniach czasowych
-                        //w tej demonstracji nie wykorzystane
-                        currTime += elapsedTime;
-
-                        //odrysuj kolejny ekran gry (nowe pozycje obiektów - symulacja ruchu)
                         repaint();
 
-                        // przerwa w czasie
+                        // poczekanie 80ms do kolejnej animacji
                         try {
                                 Thread.sleep(80);
-                        } catch (InterruptedException ex) {System.out.println("Wyjątek: "+ex);      }
-                }//koniec while
-        }//koniec animationLoop()
+                        } catch (InterruptedException ex) {System.out.println(ex);      }
+                }
+        }//koniec animation()
 }

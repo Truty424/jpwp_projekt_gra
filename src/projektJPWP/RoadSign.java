@@ -3,14 +3,18 @@ package projektJPWP;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+
 
 public class RoadSign extends JPanel {
+
+    /** zmiena określająca obecny znak */
     public int currImage;
-    //wspolrzedne znaku
+
+    /** współrzędne znaku */
     int x;
     int y;
 
+    /** szerokość i wysokość pola graficznego */
     public int sWidth;
     public int sHeight;
 
@@ -22,14 +26,9 @@ public class RoadSign extends JPanel {
 
         sWidth=1024;
         sHeight=768;
-        currImage = 0;
+        currImage = 6;
 
         signImages =  signImagesGpars;
-
-        // Random rd = new Random();
-
-
-
     }
 
 }

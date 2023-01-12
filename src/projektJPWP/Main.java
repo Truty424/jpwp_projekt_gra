@@ -16,7 +16,7 @@ public class Main {
         int xCenter=(screenWidth-gameWidth)/2;
         int yCenter=(screenHeight-gameHeight)/4;
 
-
+        //utworzenie obiektu klasy Window - który wywołuje dalsze akcje
         Window window=new Window(gameWidth,gameHeight,xCenter,yCenter);
     }
 }

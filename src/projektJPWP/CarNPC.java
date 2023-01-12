@@ -5,10 +5,15 @@ import java.awt.*;
 
 public class CarNPC extends JPanel{
 
-    public int x;           //wsporzedne auta
+    /** współrzędne auta */
+    public int x;
     public int y;
+
+    /** tymczasowe położenie auta */
     public int currX;
     public int currY;
+
+    /** parametry przesunięcia sie auta */
     public int dy;
     public int dx;
 
@@ -27,6 +32,7 @@ public class CarNPC extends JPanel{
 
     }
 
+    //poruszanie się auta w lini prostej X
     public void carNPCmovement(){
         currX = currX + dx;
     }

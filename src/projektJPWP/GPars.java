@@ -5,6 +5,7 @@ import java.awt.*;
 
 
 public class GPars {
+
     public static Image bgImage;
     public static Image menuImage;
     public static Image endImage;
@@ -17,7 +18,7 @@ public class GPars {
     public static long startTime;
     public static long GAME_TIME=Long.MAX_VALUE;
 
-
+    /** załadowanie obrazów z folderu 'images' */
     public static void loadInitialImages() {
         bgImage = loadImage("images/crossroad.jpg");
 
@@ -28,7 +29,7 @@ public class GPars {
         passedImage = loadImage("images/passedExam.png");
 
         carImages = new Image[3];
-        carImages[0]=loadImage("images/autotest4.png");
+        carImages[0]=loadImage("images/auto.png");
         carImages[1]=loadImage("images/auto_lewo1.png");
         carImages[2]=loadImage("images/auto_prawo.png");
 
@@ -45,6 +46,7 @@ public class GPars {
 
     }
 
+    /** pobranie obiektu klasy Image ze Stringa */
     public static Image loadImage(String fileName) {
         return new ImageIcon(fileName).getImage();
     }

@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 
-
+/** główny obszar graficzny gry*/
 public class GamePanel extends JPanel {
 
 
@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
         sign = new RoadSign(getX(),getY(), GPars.signImages);
         carNPC = new CarNPC(getX(),getY(),GPars.carNPCImage);
 
+
+        // Dodanie obsługi zdarzenia - pobranie zawartości przy naciskaniu klawiatury
         this.setFocusable(true);
         addKeyListener(new KeyAdapter(){
                 @Override
@@ -85,6 +87,7 @@ public class GamePanel extends JPanel {
         });
     } // koniec konstruktora klasy GamePanel
 
+    //Sprawdzenie czy auto zatrzymalo sie w odpowiednim miejscu
     public void checkIfCorrectStop(Car car){
         if (sign.currImage == 0 || sign.currImage == 1 || sign.currImage == 6) {
 
@@ -101,6 +104,7 @@ public class GamePanel extends JPanel {
 
     }
 
+    //Sprawdzenie czy auto skręciło w odpowiednim miejscu
     public void checkIfCorrectTurnLeft(Car car){
         if (sign.currImage == 3){
 
@@ -110,6 +114,7 @@ public class GamePanel extends JPanel {
         }
     }
 
+    //Sprawdzenie czy auto skręciło w odpowiednim miejscu
     public void checkIfCorrectTurnRight(Car car){
         if (sign.currImage == 3){
 
@@ -117,14 +122,21 @@ public class GamePanel extends JPanel {
                 PassCorrectly = true;
             } else { restartGame(); }
         }
+        if(sign.currImage == 6){
+            if(PassCorrectly){
+                PassCorrectly = true;
+            } else {PassCorrectly = false;}
+        }
     }
 
+    //Sprawdzenie czy auto ruszyło
     public void checkIfCorrectDrive(Car car){
         if (sign.currImage == 2){
             PassCorrectly = true;
         }
     }
 
+    //Sprawdzenie czy auto wyjechało z planszy w przeznaczonym do tego miejsca
     public void checkIfCorrectBorder(){
         if(car.currX < 0 ){                                 //lewa granica
 
@@ -149,7 +161,7 @@ public class GamePanel extends JPanel {
         }
     }
 
-    //sprawdzenie czy auta nie zderzyly sie ze soba
+    //sprawdzenie czy auta nie zderzyły sie ze sobą
     public void checkIfCollision(){
         if(car.currX < carNPC.currX + 120 && car.currX + car.carWidth > carNPC.currX &&
                 car.currY < carNPC.currY + 206 && car.currY + car.carHeight + 100> carNPC.currY){
@@ -158,18 +170,20 @@ public class GamePanel extends JPanel {
     }
 
 
+    //funkcja odpowiedzialna do umiejscawiania obiektów
     @Override
     protected void paintComponent(Graphics gs){
         Graphics2D g=(Graphics2D)gs;
 
         if(hasGameStarted) {
-            g.drawImage(GPars.bgImage, 0, 0, null);
+            g.drawImage(GPars.bgImage, 0, 0, null);     //rysowanie tła
 
             car.carMovement();
             carNPC.carNPCmovement();
 
             g.drawImage(car.carImages[car.currImage], car.currX, car.currY, null);
 
+            //rysowanie auta które nie jest sterowane przez gracza
             if (sign.currImage == 1) {
                 g.drawImage(GPars.carNPCImage, carNPC.currX, carNPC.y, null);
                 if (carNPC.currX > 1024) {
@@ -190,7 +204,7 @@ public class GamePanel extends JPanel {
         }
     } // koniec paintComponent
 
-
+    //zwiększanie liczby poziomu
     private void nextLevel()  {
         car = new Car(540,540, GPars.carImages);
         sign.currImage++;
@@ -203,6 +217,7 @@ public class GamePanel extends JPanel {
         }
     }
 
+    //ustawienie początkowych parametrów
     private void restartGame(){
         car = new Car(540,540, GPars.carImages);
         sign.currImage = 0;
@@ -211,6 +226,7 @@ public class GamePanel extends JPanel {
         gameEnd = true;
     }
 
+    //resetowanie pozycji auta które nie jest sterowane przez gracza
     private void resetPosition(){
         carNPC = new CarNPC(-200,getY(),GPars.carNPCImage);
     }
